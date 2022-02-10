@@ -1,0 +1,2 @@
+gender, score, science, english, math
+m, 300, 100, 100, 100
