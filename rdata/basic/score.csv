@@ -1,7 +1,3 @@
-﻿id,sex,math,kor
-id001,m,89,100
-id002,f,70,60
-id003,f,85,77
-id004,c,97,60
-id005,m,100,120
-id006,f,120,50
+version https://git-lfs.github.com/spec/v1
+oid sha256:da89b6bd5ff1d1ab5e860556a50d17ae92dfab9690cf5d4ebf6ef39646f577b8
+size 114
