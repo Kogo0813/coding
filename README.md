@@ -1,3 +1,3 @@
 # rpythoncode
 
-데이터 파일 이외의 파일 정리 git
+코드 위주 정리 git
