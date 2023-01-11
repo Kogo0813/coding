@@ -22,7 +22,7 @@ source("impacts.splm.r")
 
 data0 <- read.csv("dataset/data.csv", fileEncoding = "euc-kr")
 data0 <- data0[,-1]
-data0$ǳ��<- as.factor(data0$ǳ��)
+data0$관측일시= as.factor(data0$관측일시)
 
 
 ########## seasonality �߰� ##########
@@ -91,9 +91,9 @@ fm <- log(PM2.5) ~ NO2+O3+SO2+mn.humid+mean.wdspeed+precips+wd.dir+m.cos+m.sin
 
 
 new.data1 <- data.frame(split(new.data$PM2.5, new.data$region))
-
+View(new.data1) ## 지역에 따른 PM2.5를 나타낸 데이터
 purtest(new.data1, pmax = 4, exo = "intercept", test = "madwu")
-
+# 정상성을 띔을 확인할 수 있음음
 
 ############## Panel model 
 
