@@ -2,13 +2,13 @@ using Pkg, Plots, DataFrames, CSV
 pwd()
 
 # load Data
-data = CSV.read("./titanic/train.csv", DataFrame)
+data = CSV.read("titanic/train.csv", DataFrame)
 
 # EDA
 describe(data)
 
 # data preprocessing
-Pkg.add("Missings")
+
 using Statistics, Missings
 
 using Missings
@@ -22,7 +22,6 @@ data = select(data, Not([:PassengerId, :Name, :Ticket, :Cabin]))
 describe(data)
 
 # one-hot-encoding
-Pkg.add("ScikitLearn")
 using ScikitLearn
 @sk_import preprocessing: OneHotEncoder
 
@@ -59,12 +58,12 @@ using Statistics
 
 println("Survived: ", mean(df.Survived))
 
-value_counts(daf, col) = combine(groupby(df, col), nrow)
+value_counts(df, col) = combine(groupby(df, col), nrow)
 using StatsBase
 StatsBase.countmap(df.Survived)
 
-
-bar(countmap(df.Pclass))
+using PlotlyJS
+PlotlyBase.bar(countmap(df.Pclass))
 xlabel!("Pclass")
 ylabel!("Count")
 title!("Pclass/count")
@@ -76,27 +75,9 @@ using CategoricalArrays
 df.Pclass = categorical(df.Pclass)
 df.Parch = categorical(df.Parch)
 
-df
-describe(df)
+Pkg.add("PyCall")
+Pkg.add("PyPlot")
+using PyPlot, PyCall
 
-# xgboost를 적용해보자
-Pkg.add("XGBoost")
-using XGBoost
+PyPlot.matplotlib.use("TkAgg")
 
-# split Data
-Pkg.add("MLDataUtils")
-using MLDataUtils
-
-y = df.Survived
-X = select(df, Not([:Survived]))
-
-Xs, ys = shuffleobs((X, y))
-(X_train, y_train), (X_test, y_test) = splitobs((Xs, ys); at = 0.7)
-X_train
-y_train
-
-Pkg.add("DecisionTree")
-using DecisionTree
-
-model = RandomForestClassifier()
-DecisionTree.fit!(model, X_train, y_train)

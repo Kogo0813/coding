@@ -1,4 +1,5 @@
 using Pkg
+
 using RDatasets, Statistics, DataFrames, Plots
 
 # 데이터 로드하기
@@ -37,7 +38,7 @@ model = glm(@formula(y ~ SepalLength + SepalWidth + PetalLength + PetalWidth), i
 summary(model)
 
 # 데이터 분리
-using Random
+using Random, StatsBase
 Random.seed!(1234)
 
 
@@ -48,11 +49,11 @@ test = iris[setdiff(1:nrow(iris), selected_rows), :] # setdiff: 겹치지 않는
 # 사이킷런
 Pkg.add("ScikitLearn")
 using ScikitLearn: fit!, predict
-
+using ScikitLearn
 @sk_import linear_model : LogisticRegression
 
 model = LogisticRegression(fit_intercept = true)
-fit(model, train[!, 1:4], train[!, 6])
+ScikitLearn.fit!(model, train[!, 1:4], train[!, 6])
 
 
 # MLJ.jl
@@ -104,3 +105,4 @@ println(get_classes(model))
 
 using ScikitLearn.CrossValidation: cross_val_score
 accuracy = cross_val_score(classifier, test_X, test_y, cv = 5)
+mean(accuracy)
