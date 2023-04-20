@@ -95,4 +95,8 @@ weather_2020 = pd.read_csv(
     file_path + 'weather/2020_weather.csv', encoding='cp949')
 weather_preprocessing(weather_2020)
 
+weather_2021 = pd.read_csv(
+    file_path + 'weather/2021_weather.csv', encoding='cp949')
+weather_preprocessing(weather_2021)
+
 ############################ 기상 데이터 전처리 완료 ############################
