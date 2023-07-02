@@ -40,3 +40,4 @@ replace!(WJSN.member, "진숙" => "여름");WJSN
 # NAN 값 제거하는 방법
 df = DataFrame(rand(1:9, 3, 3), :auto) ./ DataFrame(rand(0:1, 3, 3), :auto)
 ifelse.(isinf.(df), 0, df)
+

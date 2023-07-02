@@ -66,3 +66,8 @@ println("Standard Deviation: ", std(chain))
 using Plots
 plot(chain, legend=false, title="Metropolis-Hastings", ylabel="x", xlabel="iteration", color=:black, lw=0.5, alpha=0.5)
 
+
+
+
+
+

@@ -1,0 +1,11 @@
+*.svg
+*.png
+*.gif
+*.h5
+*.mp4
+*.xlsx
+*.Rhistory
+*.RData
+*.pdf
+*.pptx
+*.csv

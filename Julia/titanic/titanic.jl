@@ -81,3 +81,6 @@ using PyPlot, PyCall
 
 PyPlot.matplotlib.use("TkAgg")
 
+df
+
+DataFrames.select(df, Not([:Survived]))
